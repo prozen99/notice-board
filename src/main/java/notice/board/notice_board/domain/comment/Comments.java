@@ -9,6 +9,7 @@ import notice.board.notice_board.domain.post.entity.Post;
 
 @Entity
 @Getter
+@Table(name="comments")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comments {

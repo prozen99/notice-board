@@ -23,4 +23,11 @@ public class Member {
 
     @Column(name="password",nullable = false)
     private String password;
+
+
+    public Member(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }
