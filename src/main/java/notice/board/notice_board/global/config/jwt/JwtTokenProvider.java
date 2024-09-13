@@ -17,7 +17,7 @@ import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
-    @Value("${jwt.secret_key}")
+    @Value("${jwt.secret_Key}")
     private String secretKey;//비밀키 구성
 
     @Value("${jwt.validityInMilliseconds}")

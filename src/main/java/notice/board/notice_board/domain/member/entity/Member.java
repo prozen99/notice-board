@@ -15,10 +15,10 @@ public class Member {
     @Column(name="id")
     private Long id;
 
-    @Column(name="username",unique = true)
+    @Column(name="username")
     private String username;
 
-    @Column(name="email")
+    @Column(name="email",unique = true)
     private String email;
 
     @Column(name="password",nullable = false)
