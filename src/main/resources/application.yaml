@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/notice
+    username: root
+    password: skhuA+4.5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+jwt:
+  secret_Key: NL3jYNc4LpPDJz9+H7mjU4QQZ4PcxXU2JQyujVHuoeU=
+  validityInMilliseconds: 604800000
+
+

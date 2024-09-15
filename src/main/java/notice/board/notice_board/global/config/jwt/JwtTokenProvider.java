@@ -67,7 +67,7 @@ public class JwtTokenProvider {
 
     public String getUsername(String token)//token을 파싱해서 token 내부의 subject 내용을 가져옴 그게 username임
     {
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token).getBody().getSubject();
+        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
     }
 
     public String resolveToken(HttpServletRequest request) {
@@ -81,7 +81,7 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token);
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
             return false;

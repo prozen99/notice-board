@@ -30,7 +30,7 @@ public class MemberController {
         String token=memberService.authenticate(request);
         HttpHeaders headers=new HttpHeaders();
         headers.set("Authorization","Bearer "+token);
-        return ResponseEntity.status(HttpStatus.OK).headers(headers).build();
+        return ResponseEntity.ok().headers(headers).build();
 
     }
 
