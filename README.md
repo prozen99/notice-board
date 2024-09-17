@@ -22,4 +22,10 @@
 - Post 기능 (title,content) 를 Json으로 쏴주는 과정 확인 그리고 13일에 하지 못한 디버깅을 완료하고 포스팅 했음
 - 해당 inMemoryUserDetailsService 문제와 , ParseClaimJws 와 ParseClaimJwt 에 관한 디버깅 리뷰
 - https://www.notion.so/d3d5a6cf1b9f45a6a2d2f47993006acc
-  
+
+## 9/17 Notice Board 프로젝트 5일차 
+-![image](https://github.com/user-attachments/assets/54a36653-fbc0-4c87-8bd8-4cb0ec5ac337)
+- 사진의 API 명세서중 2개의 API 구현 ( 게시글 전체 조회 , 게시글 구성 ) 
+- 글을 쓰는 사람 ( 시큐리티 컨텍스트에서 인증을 받은 사람의 username)을 이용해서 post 구현했음
+- 공부하면서 배운 내용은 노션링크
+- https://www.notion.so/8-9-17-82868b8e1e6648108fd82c820ef6cf59
