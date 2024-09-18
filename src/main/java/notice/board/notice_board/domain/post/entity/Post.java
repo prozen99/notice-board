@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import notice.board.notice_board.domain.comment.Comments;
+import notice.board.notice_board.domain.member.entity.Member;
 
 import java.util.List;
 

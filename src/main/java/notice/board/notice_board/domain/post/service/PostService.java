@@ -2,6 +2,9 @@ package notice.board.notice_board.domain.post.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import notice.board.notice_board.domain.comment.dto.CommentResponse;
+import notice.board.notice_board.domain.member.entity.Member;
+import notice.board.notice_board.domain.post.dto.PostDetailResponse;
 import notice.board.notice_board.domain.post.dto.PostRequest;
 import notice.board.notice_board.domain.post.dto.PostResponse;
 import notice.board.notice_board.domain.post.entity.Post;
@@ -54,6 +57,28 @@ public class PostService {
                 ))
                 .collect(Collectors.toList());
 
-
     }
+
+    @Transactional
+    public PostDetailResponse getPostDetail(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다"));
+        //Post의 Comments의 리스트를 CommentResponse로 변환
+        List<CommentResponse> commentResponses = post.getComments().stream()
+                .map(comment -> new CommentResponse(
+                        comment.getCommentId(),
+                        comment.getContent(),
+                        comment.getAuthor().getUsername()
+                ))
+                .toList();
+        return new PostDetailResponse(
+                post.getPostId(),
+                post.getTitle(),
+                post.getAuthor(),
+                post.getContent(),
+                commentResponses//생성자에 넣기
+        );
+    }
+
+
 }
