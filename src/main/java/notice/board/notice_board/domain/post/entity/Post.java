@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import notice.board.notice_board.domain.comment.Comments;
-import notice.board.notice_board.domain.member.entity.Member;
+import notice.board.notice_board.domain.comment.entity.Comments;
 
 import java.util.List;
 
@@ -30,6 +29,6 @@ public class Post {
     @Column(name="author")
     private String author;
 
-    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL,fetch =FetchType.LAZY,orphanRemoval = true)
     private List<Comments> comments;//댓글 리스트
 }

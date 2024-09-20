@@ -1,10 +1,7 @@
 package notice.board.notice_board.domain.post.controller;
 
 import lombok.RequiredArgsConstructor;
-import notice.board.notice_board.domain.post.dto.PostDetailResponse;
-import notice.board.notice_board.domain.post.dto.PostIdResponse;
-import notice.board.notice_board.domain.post.dto.PostRequest;
-import notice.board.notice_board.domain.post.dto.PostResponse;
+import notice.board.notice_board.domain.post.dto.*;
 import notice.board.notice_board.domain.post.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +32,24 @@ public class PostController {
         PostDetailResponse postDetail = postService.getPostDetail(postId);
         return ResponseEntity.ok(postDetail);//body값에 넣기
     }
+
+    @PostMapping("/{postId}")
+    public ResponseEntity<Void> editPost(@PathVariable Long postId, @RequestBody PostEditRequest request)
+    {
+        postService.editPost(postId,request);//
+        return  ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<Void> deletePost(@PathVariable Long postId)
+    {
+        postService.deletePost(postId);
+        return ResponseEntity.noContent().build();//ResponseEntity 객체 생성
+    }
+
+
+
+
 
 
 }

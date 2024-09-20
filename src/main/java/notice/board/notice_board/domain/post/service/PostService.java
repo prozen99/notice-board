@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import notice.board.notice_board.domain.comment.dto.CommentResponse;
 import notice.board.notice_board.domain.member.entity.Member;
 import notice.board.notice_board.domain.post.dto.PostDetailResponse;
+import notice.board.notice_board.domain.post.dto.PostEditRequest;
 import notice.board.notice_board.domain.post.dto.PostRequest;
 import notice.board.notice_board.domain.post.dto.PostResponse;
 import notice.board.notice_board.domain.post.entity.Post;
@@ -78,6 +79,55 @@ public class PostService {
                 post.getContent(),
                 commentResponses//생성자에 넣기
         );
+    }
+    @Transactional
+    public void editPost(Long postId,PostEditRequest request)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = null;
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                currentUsername = ((UserDetails) principal).getUsername();
+            } else {
+                currentUsername = principal.toString();
+            }
+        }
+
+        Post post=postRepository.findById(postId)
+                .orElseThrow(()->new RuntimeException("게시글을 찾을 수 없습니다"));
+        if(!post.getAuthor().equals(currentUsername))
+        {
+            throw new RuntimeException("게시글 작성자만 수정 할 수 있습니다");
+        }
+        post.setTitle(request.getTitle());
+        post.setContent(request.getContent());
+        postRepository.save(post);
+    }
+
+    @Transactional
+    public void deletePost(Long postId)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUsername = null;
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                currentUsername = ((UserDetails) principal).getUsername();
+            } else {
+                currentUsername = principal.toString();
+            }
+        }
+
+        Post post=postRepository.findById(postId)
+                .orElseThrow(()->new RuntimeException("게시글을 찾을 수 없습니다"));
+        if(!post.getAuthor().equals(currentUsername))
+        {
+            throw new RuntimeException("게시글 작성자만 수정 할 수 있습니다");
+        }
+        postRepository.delete(post);
     }
 
 

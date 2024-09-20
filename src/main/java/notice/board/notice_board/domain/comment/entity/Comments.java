@@ -1,14 +1,16 @@
-package notice.board.notice_board.domain.comment;
+package notice.board.notice_board.domain.comment.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import notice.board.notice_board.domain.member.entity.Member;
 import notice.board.notice_board.domain.post.entity.Post;
 
 @Entity
 @Getter
+@Setter
 @Table(name="comments")
 @AllArgsConstructor
 @NoArgsConstructor
