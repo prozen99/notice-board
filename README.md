@@ -29,3 +29,16 @@
 - 글을 쓰는 사람 ( 시큐리티 컨텍스트에서 인증을 받은 사람의 username)을 이용해서 post 구현했음
 - 공부하면서 배운 내용은 노션링크
 - https://www.notion.so/8-9-17-82868b8e1e6648108fd82c820ef6cf59
+
+## 9/18 Notice Board 프로젝트 6일차
+-![image](https://github.com/user-attachments/assets/ff88a0e7-ed2e-4713-9c04-b2d9435baf28)
+-게시글 상세조회 API 개발 (Controller Service 계층에 메서드 추가 )
+- 공부하면서 배운내용 노션링크
+- https://www.notion.so/9-9-18-105264df543380219274fdebc4bd2060
+## 9/19 Notice Board 프로젝트 7일차
+- 게시글 수정 게시글 삭제 API 개발
+- 공부하면서 배운 내용 노션 링크
+- https://www.notion.so/10-9-19-106264df543380fbb7d7d4461b0774b4
+- ![image](https://github.com/user-attachments/assets/d968d125-364b-4b44-afd7-ae5384f64ea3)
+- ![image](https://github.com/user-attachments/assets/173a60b7-17f2-4bf3-b44a-e73d9709fe62)
+
