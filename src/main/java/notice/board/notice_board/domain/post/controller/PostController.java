@@ -33,7 +33,7 @@ public class PostController {
         return ResponseEntity.ok(postDetail);//body값에 넣기
     }
 
-    @PostMapping("/{postId}")
+    @PutMapping("/{postId}")
     public ResponseEntity<Void> editPost(@PathVariable Long postId, @RequestBody PostEditRequest request)
     {
         postService.editPost(postId,request);//

@@ -3,7 +3,6 @@ package notice.board.notice_board.domain.post.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import notice.board.notice_board.domain.comment.dto.CommentResponse;
-import notice.board.notice_board.domain.member.entity.Member;
 import notice.board.notice_board.domain.post.dto.PostDetailResponse;
 import notice.board.notice_board.domain.post.dto.PostEditRequest;
 import notice.board.notice_board.domain.post.dto.PostRequest;
@@ -33,10 +32,10 @@ public class PostService {
             if (principal instanceof UserDetails) {
                 currentUsername = ((UserDetails) principal).getUsername();
             } else {
-                currentUsername = principal.toString();
+                currentUsername = principal.toString();//Oauth2 다른 인증 방식에서
+                //
             }
         }
-
 
         Post post = new Post();
         post.setTitle(request.getTitle());
@@ -50,12 +49,14 @@ public class PostService {
     public List<PostResponse> searchPosts() {
         List<Post> posts = postRepository.findAll();
         return posts.stream()
-                .map(post -> new PostResponse(
-                        post.getPostId(),
-                        post.getTitle(),
-                        post.getAuthor(),
-                        (long) post.getComments().size()  // 댓글 수를 Long으로 변환하여 반환
-                ))
+//                .map(post -> new PostResponse(
+////                        post.getPostId(),
+////                        post.getTitle(),
+////                        post.getAuthor(),
+////                        (long) post.getComments().size()  // 댓글 수를 Long으로 변환하여 반환
+////                ))
+                .map(PostResponse::toResponse)
+                //.toList()가능
                 .collect(Collectors.toList());
 
     }
@@ -103,7 +104,7 @@ public class PostService {
         }
         post.setTitle(request.getTitle());
         post.setContent(request.getContent());
-        postRepository.save(post);
+//        postRepository.save(post);
     }
 
     @Transactional
@@ -120,15 +121,19 @@ public class PostService {
                 currentUsername = principal.toString();
             }
         }
-
         Post post=postRepository.findById(postId)
                 .orElseThrow(()->new RuntimeException("게시글을 찾을 수 없습니다"));
         if(!post.getAuthor().equals(currentUsername))
         {
-            throw new RuntimeException("게시글 작성자만 수정 할 수 있습니다");
+            throw new RuntimeException("게시글 작성자만 삭제 할 수 있습니다");
         }
         postRepository.delete(post);
     }
+
+
+
+
+
 
 
 }

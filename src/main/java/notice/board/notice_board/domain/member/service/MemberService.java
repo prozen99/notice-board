@@ -20,8 +20,7 @@ public class MemberService {
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
 
-    public Member registermember(SignupRequest request)//회원가입을 위한 메서드
-    {
+    public Member registerMember(SignupRequest request) {
         if (memberRepository.existsByEmail(request.getEmail())) {
             throw new ApplicationContextException("중복 된 이메일입니다");
         }
@@ -33,8 +32,7 @@ public class MemberService {
     public String authenticate(LoginRequest request) {
         Member member = memberRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Not Found Email"));
-        if(!passwordEncoder.matches(request.getPassword(),member.getPassword()))
-        {
+        if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new ApplicationContextException("비밀번호가 틀립니다");
         }
         return jwtTokenProvider.createToken(member.getEmail());

@@ -20,7 +20,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public ResponseEntity<Void> signup(@RequestBody SignupRequest request) {
-        memberService.registermember(request);
+        memberService.registerMember(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
